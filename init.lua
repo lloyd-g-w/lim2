@@ -41,4 +41,4 @@ vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, { silent = true, de
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { silent = true, desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { silent = true, desc = "Previous diagnostic" })
 
-require("plugins.lsp")
+require("plugins")
