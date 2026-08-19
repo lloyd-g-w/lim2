@@ -15,11 +15,19 @@ let
     # lua-language-server
   ];
 
+  # init.lua + lua/ only — this is what gets put on `runtimepath` so
+  # `require(...)` can find lua/plugins/*.lua etc.
+  configDir = pkgs.lib.fileset.toSource {
+    root = ./.;
+    fileset = pkgs.lib.fileset.unions [ ./init.lua ./lua ];
+  };
+
   base =
     if bakeConfig
     then pkgs.wrapNeovim pkgs.neovim-unwrapped {
       configure.customRC = ''
-        luafile ${./init.lua}
+        set runtimepath^=${configDir}
+        luafile ${configDir}/init.lua
       '';
     }
     else pkgs.neovim-unwrapped;

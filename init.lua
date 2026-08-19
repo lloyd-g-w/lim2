@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local opt = vim.opt
+
 opt.number = true -- show line numbers
 opt.relativenumber = true -- relative line numbers
 opt.cursorline = true -- highlight the current line
@@ -23,11 +24,6 @@ opt.scrolloff = 8 -- keep some context around the cursor
 opt.exrc = true -- allow project-local .nvim.lua files
 opt.secure = true -- ...but sandbox what they can do
 
--- A few handy keymaps.
-vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
-vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit" })
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
-
 -- Clear an annoying default keybind (join-lines-with-comment-leader).
 vim.keymap.set("n", "<S-j>", "<Nop>")
 
@@ -44,3 +40,5 @@ vim.keymap.set("n", "<leader>cp", "<cmd>cprev<cr>", { silent = true, desc = "Pre
 vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, { silent = true, desc = "Open diagnostic" })
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { silent = true, desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { silent = true, desc = "Previous diagnostic" })
+
+require("plugins.lsp")
