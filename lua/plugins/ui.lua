@@ -45,6 +45,13 @@ vim.pack.add({
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
+-- `:colorscheme` runs `hi clear` internally, which would wipe this link if
+-- set only once here — reapply it every time the colorscheme (re)loads.
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "AlphaHeader", { link = "Keyword" })
+	end,
+})
 vim.api.nvim_set_hl(0, "AlphaHeader", { link = "Keyword" })
 
 dashboard.section.header.val = {
@@ -67,18 +74,18 @@ dashboard.section.buttons.val = {
 
 alpha.setup(dashboard.opts)
 
---- 
- vim.pack.add({
-    -- 'https://github.com/nvim-tree/nvim-web-devicons',
-    'https://github.com/nvim-lualine/lualine.nvim'
+---
+vim.pack.add({
+	-- 'https://github.com/nvim-tree/nvim-web-devicons',
+	"https://github.com/nvim-lualine/lualine.nvim",
 })
 
-require('lualine').setup({
-    			options = {
-				theme = "onedark",
-				section_separators = { "" },
-				component_separators = { "" },
-			},
+require("lualine").setup({
+	options = {
+		theme = "onedark",
+		section_separators = { "" },
+		component_separators = { "" },
+	},
 })
 
 ------- COLOURSCHEMES -------
