@@ -1,11 +1,11 @@
 vim.pack.add({ "https://github.com/folke/snacks.nvim" })
 
-local Snacks = require("snacks")
+local snacks = require("snacks")
 
-Snacks.setup({
+snacks.setup({
 	lazygit = {},
 })
 
 vim.keymap.set("n", "<leader>gg", function()
-	Snacks.lazygit()
+	snacks.lazygit()
 end, { desc = "Open lazygit" })
