@@ -25,6 +25,9 @@ require("noice").setup({
 	},
 })
 
+require("telescope").load_extension("noice")
+vim.keymap.set("n", "<leader>fn", "<Cmd>Telescope noice<CR>", { desc = "Telescope noice" })
+
 ------- COLOURSCHEMES -------
 
 vim.pack.add({
