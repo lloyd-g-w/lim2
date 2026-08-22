@@ -59,7 +59,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-
 --- Formatting ---
 
+vim.pack.add({
+	"https://github.com/stevearc/conform.nvim",
+})
 
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_format = "fallback",
+	},
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end, { silent = true, desc = "Format buffer" })

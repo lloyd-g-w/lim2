@@ -13,6 +13,7 @@ let
   extraPackages = with pkgs; [
     # ripgrep
     lua-language-server
+    stylua
   ];
 
   # init.lua + lua/ only — this is what gets put on `runtimepath` so
