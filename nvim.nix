@@ -12,7 +12,7 @@
 let
   extraPackages = with pkgs; [
     # ripgrep
-    # lua-language-server
+    lua-language-server
   ];
 
   # init.lua + lua/ only — this is what gets put on `runtimepath` so

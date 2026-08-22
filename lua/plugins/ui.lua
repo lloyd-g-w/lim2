@@ -28,6 +28,59 @@ require("noice").setup({
 require("telescope").load_extension("noice")
 vim.keymap.set("n", "<leader>fn", "<Cmd>Telescope noice<CR>", { desc = "Telescope noice" })
 
+---
+
+vim.pack.add({
+	"https://github.com/Bekaboo/dropbar.nvim",
+})
+
+require("dropbar").setup({})
+
+---
+
+vim.pack.add({
+	"https://github.com/goolord/alpha-nvim",
+})
+
+local alpha = require("alpha")
+local dashboard = require("alpha.themes.dashboard")
+
+vim.api.nvim_set_hl(0, "AlphaHeader", { link = "Keyword" })
+
+dashboard.section.header.val = {
+	[[ ██╗     ██╗███╗   ███╗ ]],
+	[[ ██║     ██║████╗ ████║ ]],
+	[[ ██║     ██║██╔████╔██║ ]],
+	[[ ██║     ██║██║╚██╔╝██║ ]],
+	[[ ███████╗██║██║ ╚═╝ ██║ ]],
+	[[ ╚══════╝╚═╝╚═╝     ╚═╝ ]],
+}
+
+dashboard.section.header.opts.hl = "AlphaHeader"
+
+dashboard.section.buttons.val = {
+	dashboard.button("e", "  New file", "<cmd>ene <BAR> startinsert<CR>"),
+	dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
+	dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
+	dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
+}
+
+alpha.setup(dashboard.opts)
+
+--- 
+ vim.pack.add({
+    -- 'https://github.com/nvim-tree/nvim-web-devicons',
+    'https://github.com/nvim-lualine/lualine.nvim'
+})
+
+require('lualine').setup({
+    			options = {
+				theme = "onedark",
+				section_separators = { "" },
+				component_separators = { "" },
+			},
+})
+
 ------- COLOURSCHEMES -------
 
 vim.pack.add({

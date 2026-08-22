@@ -1,6 +1,10 @@
 vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
 
 require("mini.ai").setup({})
-require("mini.pick").setup({})
-
+require("mini.extra").setup({})
+require("mini.hipatterns").setup({})
+require("mini.cursorword").setup({})
+require("mini.move").setup({})
 require("mini.icons").setup({})
+require("mini.git").setup({})
+require("mini.diff").setup({})

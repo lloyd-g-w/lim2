@@ -7,6 +7,20 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 })
 
+-- lua_ls has no built-in knowledge of Neovim's `vim` global; point it at
+-- the LuaCATS annotations Neovim ships under $VIMRUNTIME/lua.
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = { globals = { "vim" } },
+			workspace = {
+				library = { vim.env.VIMRUNTIME .. "/lua" },
+				checkThirdParty = false,
+			},
+		},
+	},
+})
+
 -- Enable whichever servers you've added to extraPackages. Names must
 -- match nvim-lspconfig's config names.
 vim.lsp.enable({
@@ -44,3 +58,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		)
 	end,
 })
+
+
+--- Formatting ---
+
+
