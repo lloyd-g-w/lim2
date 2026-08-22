@@ -23,6 +23,3 @@ opt.undofile = true -- persistent undo
 opt.scrolloff = 8 -- keep some context around the cursor
 opt.exrc = true -- allow project-local .nvim.lua files
 opt.secure = true -- ...but sandbox what they can do
-
--- Experimental redesign of the core messages/cmdline UI. See :h ui2.
-require("vim._core.ui2").enable()
