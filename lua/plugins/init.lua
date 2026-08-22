@@ -1,2 +1,5 @@
 require("plugins.lsp")
 require("plugins.mini")
+require("plugins.snacks")
+require("plugins.files")
+require("plugins.ui")
