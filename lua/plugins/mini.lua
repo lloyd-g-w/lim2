@@ -43,4 +43,6 @@ snippets.setup({
 			return custom_by_filetype[vim.bo.filetype] or {}
 		end,
 	},
+	-- Same keys as lim's LuaSnip setup (expand/jump-forward/jump-back).
+	mappings = { expand = "<C-k>", jump_next = "<C-l>", jump_prev = "<C-j>" },
 })
