@@ -26,3 +26,13 @@ vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find f
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+
+--- Flash ---
+vim.pack.add({
+	"https://github.com/folke/flash.nvim",
+})
+
+local flash = require("flash")
+flash.setup()
+
+vim.keymap.set({ "n", "x", "o" }, "f", flash.jump, { desc = "Flash" })

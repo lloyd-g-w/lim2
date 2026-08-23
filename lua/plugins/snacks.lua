@@ -4,6 +4,10 @@ local snacks = require("snacks")
 
 snacks.setup({
 	lazygit = {},
+	bigfile = {},
+	rename = {},
+	indent = {},
+	scope = {},
 })
 
 vim.keymap.set("n", "<leader>gg", function()
