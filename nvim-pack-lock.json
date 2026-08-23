@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "LuaSnip": {
+      "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
+      "src": "https://github.com/L3MON4D3/LuaSnip"
+    },
     "alpha-nvim": {
       "rev": "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09",
       "src": "https://github.com/goolord/alpha-nvim"

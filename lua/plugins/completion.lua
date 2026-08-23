@@ -10,13 +10,12 @@ require("blink.cmp").setup({
 	-- separate download/build step needed on top of vim.pack.
 	fuzzy = { implementation = "lua" },
 
-	-- Expand via mini.snippets (lua/plugins/mini.lua) instead of
-	-- blink's own snippet store.
-	snippets = { preset = "mini_snippets" },
+	-- Use LuaSnip for expansion and as Blink's snippet completion source.
+	snippets = { preset = "luasnip" },
 
 	-- Mirrors the old lim nvim-cmp keymap 1:1: Tab/S-Tab only move
 	-- through the menu (snippet jumping is its own thing, bound
-	-- alongside mini.snippets in mini.lua), Enter only accepts an
+	-- alongside LuaSnip in snippets.lua), Enter only accepts an
 	-- explicitly-selected item, and C-b/C-f scroll docs.
 	keymap = {
 		["<C-space>"] = { "show" },

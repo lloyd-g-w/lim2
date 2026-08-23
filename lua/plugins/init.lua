@@ -1,5 +1,6 @@
 require("plugins.lsp")
 require("plugins.mini")
+require("plugins.snippets")
 require("plugins.completion")
 require("plugins.snacks")
 require("plugins.search")
