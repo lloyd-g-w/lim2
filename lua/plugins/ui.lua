@@ -4,9 +4,6 @@ vim.pack.add({
 	-- Deps
 	"https://github.com/MunifTanjim/nui.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
-	-- Without this, the `backend = "notify"` view below silently falls back to
-	-- noice's bottom-right "mini" view.
-	"https://github.com/rcarriga/nvim-notify",
 })
 
 require("noice").setup({
@@ -25,14 +22,6 @@ require("noice").setup({
 		long_message_to_split = true, -- long messages will be sent to a split
 		inc_rename = false, -- enables an input dialog for inc-rename.nvim
 		lsp_doc_border = false, -- add a border to hover docs and signature help
-	},
-	views = {
-		notify = {
-			backend = "notify",
-			opts = {
-				top_down = true,
-			},
-		},
 	},
 })
 
