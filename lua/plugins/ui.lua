@@ -106,5 +106,11 @@ vim.pack.add({
 })
 require("onedark").setup({
 	style = "warm",
+	highlights = {
+		-- snacks indent guides default to loud link targets that clash with
+		-- onedark; pull them from the theme's own palette instead.
+		SnacksIndent = { fg = "$bg3" },
+		SnacksIndentScope = { fg = "$light_grey" },
+	},
 })
 require("onedark").load()

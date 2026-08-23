@@ -1,7 +1,7 @@
 require("plugins.lsp")
 require("plugins.mini")
 require("plugins.snacks")
-require("lua.plugins.search")
+require("plugins.search")
 require("plugins.ui")
 require("plugins.misc")
 require("plugins.ai")

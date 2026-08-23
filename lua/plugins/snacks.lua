@@ -6,8 +6,11 @@ snacks.setup({
 	lazygit = {},
 	bigfile = {},
 	rename = {},
-	indent = {},
-	scope = {},
+	indent = {
+		enabled = true,
+		animate = { enabled = false },
+	},
+	scope = { enabled = true },
 })
 
 vim.keymap.set("n", "<leader>gg", function()
