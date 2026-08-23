@@ -38,14 +38,15 @@ let
     rust-analyzer
     zls
     qt6Packages.qtdeclarative
+    haskell-language-server
+    ocaml
+    ocamlPackages.ocaml-lsp
 
     # C++
-    # Clangd from clang-tools must come first.
-    # (lib.hiPrio clang-tools)
-
-    # Do not use the clangd from this package as it does not work correctly with
-    # stdlib headers.
-    # clang
+    # clang-tools also bundles clangd, but it doesn't resolve stdlib
+    # headers correctly — only use it for clang-format, not as clangd's
+    # source.
+    clang-tools
 
     tex-fmt
     rustfmt
@@ -56,6 +57,8 @@ let
     jq
     stylua
     astyle
+    prettier
+    ocamlPackages.ocamlformat
 
     # vscode-extensions.ms-vscode.cpptools
     gdb

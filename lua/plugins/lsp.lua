@@ -21,10 +21,45 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+vim.lsp.config("tinymist", {
+	settings = {
+		formatterMode = "typstyle",
+		formatterPrintWidth = 80,
+		formatterIndentSize = 2,
+		formatterProseWrap = true,
+	},
+})
+
+vim.lsp.config("ocamllsp", {
+	settings = {
+		merlinDiagnostics = { enable = true },
+		extendedHover = { enable = true },
+		codelens = { enable = true },
+		inlayHints = { enable = true },
+		syntaxDocumentation = { enable = true },
+		merlinJumpCodeActions = { enable = true },
+	},
+})
+
 -- Enable whichever servers you've added to extraPackages. Names must
--- match nvim-lspconfig's config names.
+-- match nvim-lspconfig's config names. (jdtls is wired separately in
+-- languages.lua — it needs nvim-jdtls' start_or_attach, not vim.lsp.enable.)
 vim.lsp.enable({
 	"lua_ls",
+	"nixd",
+	"texlab",
+	"svelte",
+	"ts_ls",
+	"basedpyright",
+	"vimls",
+	"csharp_ls",
+	"cmake",
+	"tinymist",
+	"rust_analyzer",
+	"zls",
+	"qmlls",
+	"hls",
+	"ocamllsp",
 })
 
 vim.diagnostic.config({
@@ -68,6 +103,20 @@ vim.pack.add({
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		python = { "black" },
+		rust = { "rustfmt", lsp_format = "fallback" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		yaml = { "yq" },
+		json = { "jq" },
+		jsonc = { "prettier" },
+		nix = { "alejandra" },
+		tex = { "tex-fmt" },
+		css = { "prettier" },
+		markdown = { "markdownlint" },
+		cpp = { "clang-format" },
+		c = { "clang-format", "astyle" },
+		ocaml = { "ocamlformat" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
