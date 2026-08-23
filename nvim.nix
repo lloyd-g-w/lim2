@@ -11,9 +11,54 @@
 { pkgs, bakeConfig ? true }:
 let
   extraPackages = with pkgs; [
-    # ripgrep
+    # For image.nvim plugin
+    luajitPackages.magick
+    imagemagick
+    luarocks
+    lua5_1
+
+    lazygit
+    tree-sitter
+    texpresso
+    tectonic
+    ripgrep
+
+    nixd
+    texlab
     lua-language-server
+    svelte-language-server
+    jdt-language-server
+    typescript-language-server
+    vim-language-server
+    basedpyright
+    csharp-ls
+    cmake-language-server
+    tailwindcss-language-server
+    tinymist
+    rust-analyzer
+    zls
+    qt6Packages.qtdeclarative
+
+    # C++
+    # Clangd from clang-tools must come first.
+    # (lib.hiPrio clang-tools)
+
+    # Do not use the clangd from this package as it does not work correctly with
+    # stdlib headers.
+    # clang
+
+    tex-fmt
+    rustfmt
+    markdownlint-cli
+    alejandra
+    yq-go
+    black
+    jq
     stylua
+    astyle
+
+    # vscode-extensions.ms-vscode.cpptools
+    gdb
   ];
 
   # init.lua + lua/ only — this is what gets put on `runtimepath` so
@@ -41,5 +86,8 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/nvim \
       --prefix PATH : ${pkgs.lib.makeBinPath extraPackages}
   '';
+  # Exposed so home-manager.nix can also install these into the user
+  # profile (usable from any terminal), not just on nvim's wrapped PATH.
+  passthru = { inherit extraPackages; };
   meta.mainProgram = "nvim";
 }

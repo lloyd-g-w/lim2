@@ -27,10 +27,14 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [(import ./nvim.nix {inherit pkgs; bakeConfig = cfg.repo == null;})];
+  config = lib.mkIf cfg.enable (let
+    nvim = import ./nvim.nix {inherit pkgs; bakeConfig = cfg.repo == null;};
+  in {
+    # Install nvim's CLI tools (LSPs, formatters, ...) into the profile
+    # too, so they're runnable from any terminal, not only inside nvim.
+    home.packages = [nvim] ++ nvim.extraPackages;
 
     xdg.configFile."nvim".source = lib.mkIf (cfg.repo != null)
       (config.lib.file.mkOutOfStoreSymlink cfg.repo);
-  };
+  });
 }
