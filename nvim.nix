@@ -67,7 +67,6 @@
 
     # vscode-extensions.ms-vscode.cpptools
     gdb
-    texliveSmall
   ];
 
   # init.lua + lua/ only — this is what gets put on `runtimepath` so
