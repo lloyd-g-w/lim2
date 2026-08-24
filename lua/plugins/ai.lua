@@ -52,6 +52,6 @@ require("copilot").setup({
 -- :Copilot enable is run, which restores the full merged config above.
 require("copilot.command").disable()
 
-vim.keymap.set("i", "<C-g>", function()
+vim.keymap.set("i", "<C-f>", function()
 	require("copilot.suggestion").accept()
 end, { desc = "Accept copilot suggestion", silent = true })

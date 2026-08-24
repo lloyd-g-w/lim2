@@ -1,5 +1,16 @@
 --- Latex ---
+
+-- vimtex is plain Vimscript and reads its vim.g options when its plugin
+-- files are sourced — vim.pack.add loads immediately, so these must be
+-- set first (lazy.nvim's `init` served this purpose in lim).
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_compiler_method = "latexmk"
+vim.g.vimtex_compiler_latexmk = {
+	aux_dir = ".build",
+}
+
 vim.pack.add({
+	"https://github.com/lervag/vimtex",
 	"https://github.com/let-def/texpresso.vim",
 })
 

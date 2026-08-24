@@ -19,6 +19,28 @@ whichkey.add({
 	},
 })
 
+--- Leetcode ---
+
+vim.pack.add({
+	"https://github.com/kawre/leetcode.nvim",
+
+	-- Deps (plenary/nui also appear in ai.lua — vim.pack dedupes; listed
+	-- here too so this section survives without that file).
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/3rd/image.nvim",
+})
+
+-- magick_cli shells out to the imagemagick in extraPackages instead of
+-- building the magick luarock (see 3rd/image.nvim#91).
+require("image").setup({
+	processor = "magick_cli",
+})
+
+require("leetcode").setup({
+	image_support = true,
+})
+
 --- Tmux support ---
 
 vim.pack.add({
