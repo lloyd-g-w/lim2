@@ -1,3 +1,9 @@
+-- A string log level sidesteps an avante startup bug: its log module builds the
+-- numeric reverse-lookup by inserting into a table while pairs()-iterating it
+-- (undefined behavior), which intermittently drops entries and makes the default
+-- numeric WARN level fail an assert. The string path only uses original keys.
+vim.g.avante = { log_level = "warn" }
+
 vim.api.nvim_create_autocmd("PackChanged", {
 	callback = function(ev)
 		local name, kind = ev.data.spec.name, ev.data.kind
@@ -27,5 +33,25 @@ vim.pack.add({
 	"https://github.com/folke/snacks.nvim", -- for modern input UI
 })
 
--- Config customizations
 require("avante").setup({})
+
+--- Copilot ---
+
+-- copilot.lua does nothing until setup() is called, and ghost text only
+-- appears as you type with auto_trigger — by default suggestions wait for a
+-- manual <M-]> / <M-[> cycle. Accept is <M-l> (Tab belongs to blink.cmp).
+require("copilot").setup({
+	suggestion = {
+		enabled = true,
+		auto_trigger = true,
+	},
+})
+
+-- copilot.lua has no `enabled` config option and setup() always enables.
+-- Tearing down immediately keeps it off (no server spawned) until
+-- :Copilot enable is run, which restores the full merged config above.
+require("copilot.command").disable()
+
+vim.keymap.set("i", "<C-g>", function()
+	require("copilot.suggestion").accept()
+end, { desc = "Accept copilot suggestion", silent = true })

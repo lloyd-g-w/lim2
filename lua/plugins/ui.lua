@@ -1,32 +1,8 @@
-vim.pack.add({
-	"https://github.com/folke/noice.nvim",
-
-	-- Deps
-	"https://github.com/MunifTanjim/nui.nvim",
-	"https://github.com/nvim-lua/plenary.nvim",
-})
-
-require("noice").setup({
-	lsp = {
-		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-		override = {
-			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-			["vim.lsp.util.stylize_markdown"] = true,
-			["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-		},
-	},
-	-- you can enable a preset for easier configuration
-	presets = {
-		bottom_search = false, -- use a classic bottom cmdline for search
-		command_palette = true, -- position the cmdline and popupmenu together
-		long_message_to_split = true, -- long messages will be sent to a split
-		inc_rename = false, -- enables an input dialog for inc-rename.nvim
-		lsp_doc_border = false, -- add a border to hover docs and signature help
-	},
-})
-
-require("telescope").load_extension("noice")
-vim.keymap.set("n", "<leader>fn", "<Cmd>Telescope noice<CR>", { desc = "Telescope noice" })
+-- ui2: Neovim 0.12's experimental redesign of the message + cmdline UI
+-- (no hit-enter prompts, cmdline highlighted as you type, :messages pager
+-- as a real buffer). Still experimental — drop this line if messages
+-- start misbehaving. See :h ui2.
+require("vim._core.ui2").enable()
 
 ---
 

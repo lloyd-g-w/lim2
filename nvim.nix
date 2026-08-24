@@ -17,6 +17,9 @@ let
     luarocks
     lua5_1
 
+    # copilot.lua runs its bundled language server with `node`
+    nodejs
+
     lazygit
     tree-sitter
     texpresso
