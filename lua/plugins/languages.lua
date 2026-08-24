@@ -3,6 +3,13 @@
 -- vimtex is plain Vimscript and reads its vim.g options when its plugin
 -- files are sourced — vim.pack.add loads immediately, so these must be
 -- set first (lazy.nvim's `init` served this purpose in lim).
+--
+-- tex_flavor forces the builtin ftdetect/tex.vim to always classify
+-- .tex files as "tex" instead of "plaintex" — without it, files that
+-- don't yet contain LaTeX-specific content (new files, simple ones)
+-- get detected as "plaintex" and silently miss anything keyed to the
+-- "tex" filetype, including the LuaSnip snippets in snippets.lua.
+vim.g.tex_flavor = "latex"
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {

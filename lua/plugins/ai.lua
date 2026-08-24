@@ -33,7 +33,16 @@ vim.pack.add({
 	"https://github.com/folke/snacks.nvim", -- for modern input UI
 })
 
-require("avante").setup({})
+-- avante persists the last-selected provider/model and restores it on every
+-- startup; if the sidebar header doesn't display the model it notifies you
+-- about the restore instead, so surface it in the header to silence that.
+require("avante").setup({
+	windows = {
+		sidebar_header = {
+			include_model = true,
+		},
+	},
+})
 
 --- Copilot ---
 
