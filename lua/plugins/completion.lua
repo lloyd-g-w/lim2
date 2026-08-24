@@ -30,5 +30,15 @@ require("blink.cmp").setup({
 		list = { selection = { preselect = false } },
 	},
 
+	-- Mode-specific config layers over the global one, and blink v2 ships
+	-- a cmdline-mode default of preselect = true that beats the global
+	-- `preselect = false` above — making Tab skip the first candidate.
+	-- Nothing gets selected until the first Tab, in every mode.
+	cmdline = {
+		completion = {
+			list = { selection = { preselect = false } },
+		},
+	},
+
 	signature = { enabled = true },
 })

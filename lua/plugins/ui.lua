@@ -79,3 +79,16 @@ require("onedark").setup({
 	},
 })
 require("onedark").load()
+
+--- Colourizer ---
+
+vim.pack.add({
+	"https://github.com/catgoose/nvim-colorizer.lua",
+})
+
+require("colorizer").setup({
+	filetypes = {
+		"*", -- Highlight all files, but customize some others.
+		css = { rgb_fn = true, oklch_fn = true }, -- Enable parsing rgb(...) and oklch(...) functions in css.
+	},
+})
