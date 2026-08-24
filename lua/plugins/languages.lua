@@ -12,8 +12,19 @@
 vim.g.tex_flavor = "latex"
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_compiler_method = "latexmk"
+-- -shell-escape is required by packages that shell out during compilation
+-- (e.g. minted, which invokes pygmentize) — off by default in vimtex
+-- since it lets the document's own .tex source run arbitrary shell
+-- commands, so only enable it if you trust what you're compiling.
 vim.g.vimtex_compiler_latexmk = {
 	aux_dir = ".build",
+	options = {
+		"-verbose",
+		"-file-line-error",
+		"-synctex=1",
+		"-interaction=nonstopmode",
+		"-shell-escape",
+	},
 }
 
 vim.pack.add({

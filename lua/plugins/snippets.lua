@@ -41,6 +41,27 @@ ls.add_snippets("tex", {
 		end),
 	}),
 	s({ trig = "bb", snippetType = "autosnippet" }, { t("\\mathbb ") }),
+	s({ trig = "mk", snippetType = "autosnippet" }, {
+		t("$"),
+		i(1),
+		t("$"),
+	}),
+	s({ trig = "dm", snippetType = "autosnippet" }, {
+		t({ "\\[", "\t" }),
+		i(1),
+		t({ "", "\\]" }),
+	}),
+	s({ trig = "beg", snippetType = "autosnippet" }, {
+		t("\\begin{"),
+		i(1),
+		t({ "}", "\t" }),
+		i(0),
+		t({ "", "\\end{" }),
+		f(function(args)
+			return args[1][1]
+		end, { 1 }),
+		t("}"),
+	}),
 })
 
 ls.add_snippets("typst", {
