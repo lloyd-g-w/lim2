@@ -8,8 +8,10 @@
 # Home Manager passes bakeConfig = false and instead symlinks init.lua
 # straight from your live repo checkout into ~/.config/nvim, so edits
 # apply instantly (no rebuild) — see home-manager.nix.
-{ pkgs, bakeConfig ? true }:
-let
+{
+  pkgs,
+  bakeConfig ? true,
+}: let
   extraPackages = with pkgs; [
     # For image.nvim plugin
     luajitPackages.magick
@@ -65,35 +67,37 @@ let
 
     # vscode-extensions.ms-vscode.cpptools
     gdb
+    texliveSmall
   ];
 
   # init.lua + lua/ only — this is what gets put on `runtimepath` so
   # `require(...)` can find lua/plugins/*.lua etc.
   configDir = pkgs.lib.fileset.toSource {
     root = ./.;
-    fileset = pkgs.lib.fileset.unions [ ./init.lua ./lua ];
+    fileset = pkgs.lib.fileset.unions [./init.lua ./lua];
   };
 
   base =
     if bakeConfig
-    then pkgs.wrapNeovim pkgs.neovim-unwrapped {
-      configure.customRC = ''
-        set runtimepath^=${configDir}
-        luafile ${configDir}/init.lua
-      '';
-    }
+    then
+      pkgs.wrapNeovim pkgs.neovim-unwrapped {
+        configure.customRC = ''
+          set runtimepath^=${configDir}
+          luafile ${configDir}/init.lua
+        '';
+      }
     else pkgs.neovim-unwrapped;
 in
-pkgs.symlinkJoin {
-  name = "nvim";
-  paths = [ base ];
-  nativeBuildInputs = [ pkgs.makeWrapper ];
-  postBuild = ''
-    wrapProgram $out/bin/nvim \
-      --prefix PATH : ${pkgs.lib.makeBinPath extraPackages}
-  '';
-  # Exposed so home-manager.nix can also install these into the user
-  # profile (usable from any terminal), not just on nvim's wrapped PATH.
-  passthru = { inherit extraPackages; };
-  meta.mainProgram = "nvim";
-}
+  pkgs.symlinkJoin {
+    name = "nvim";
+    paths = [base];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/nvim \
+        --prefix PATH : ${pkgs.lib.makeBinPath extraPackages}
+    '';
+    # Exposed so home-manager.nix can also install these into the user
+    # profile (usable from any terminal), not just on nvim's wrapped PATH.
+    passthru = {inherit extraPackages;};
+    meta.mainProgram = "nvim";
+  }
