@@ -3,6 +3,7 @@ vim.pack.add({
 })
 
 local overseer = require("overseer")
+local last_task
 
 overseer.setup({})
 
@@ -33,7 +34,24 @@ vim.keymap.set("n", "<leader>oo", function()
 	end
 end, { silent = true, desc = "Toggle Overseer" })
 
--- Run overseer
+-- Choosing / running tasks
+
+local function choose_task()
+	overseer.run_task({}, function(task)
+		if task then
+			last_task = task
+		end
+	end)
+end
+
 vim.keymap.set("n", "<leader>or", function()
-	overseer.run_task({ name = "default" })
-end, { silent = true, desc = "Run Overseer" })
+	if last_task then
+		last_task:restart()
+	else
+		choose_task()
+	end
+end, { desc = "Run last Overseer task" })
+
+vim.keymap.set("n", "<leader>oR", function()
+	choose_task()
+end, { desc = "Choose Overseer task" })
