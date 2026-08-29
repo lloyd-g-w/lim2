@@ -18,3 +18,6 @@ end, { silent = true, desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>dp", function()
 	vim.diagnostic.jump({ count = -1 })
 end, { silent = true, desc = "Previous diagnostic" })
+
+-- Term
+vim.keymap.set("t", "<C-Space>", "<Cmd>stopinsert<CR>", { silent = true }) -- Exit term
