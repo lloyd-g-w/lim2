@@ -18,3 +18,16 @@ end, { silent = true, desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>dp", function()
 	vim.diagnostic.jump({ count = -1 })
 end, { silent = true, desc = "Previous diagnostic" })
+
+-- Cycle the current split through useful fractions of the editor width.
+local window_widths = { 1 / 4, 1 / 3, 1 / 2, 1 }
+vim.keymap.set("n", "<C-w>R", function()
+	local index = (vim.w.width_cycle_index or 0) % #window_widths + 1
+	vim.w.width_cycle_index = index
+
+	local target_width = math.floor(vim.o.columns * window_widths[index] + 0.5)
+	vim.api.nvim_win_set_width(0, target_width)
+end, { silent = true, desc = "Cycle window width (1/4, 1/3, 1/2, full)" })
+
+-- Term
+vim.keymap.set("t", "<C-Space>", "<Cmd>stopinsert<CR>", { silent = true }) -- Exit term
