@@ -118,10 +118,6 @@ require("conform").setup({
 		c = { "clang-format", "astyle" },
 		ocaml = { "ocamlformat" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
 })
 
 vim.keymap.set({ "n", "v" }, "<leader>cf", function()
