@@ -3,7 +3,7 @@ vim.pack.add({
 })
 
 local overseer = require("overseer")
-local last_task
+local task_slots = {}
 
 overseer.setup({})
 
@@ -36,22 +36,34 @@ end, { silent = true, desc = "Toggle Overseer" })
 
 -- Choosing / running tasks
 
-local function choose_task()
+local function choose_task(slot)
 	overseer.run_task({}, function(task)
 		if task then
-			last_task = task
+			task_slots[slot] = task
 		end
 	end)
 end
 
-vim.keymap.set("n", "<leader>or", function()
-	if last_task then
-		last_task:restart()
-	else
-		choose_task()
-	end
-end, { desc = "Run last Overseer task" })
+local task_slot_keys = {
+	{ "1", "!" },
+	{ "2", "@" },
+	{ "3", "#" },
+	{ "4", "$" },
+	{ "5", "%" },
+}
 
-vim.keymap.set("n", "<leader>oR", function()
-	choose_task()
-end, { desc = "Choose Overseer task" })
+for _, keys in ipairs(task_slot_keys) do
+	local slot, choose_key = unpack(keys)
+
+	vim.keymap.set("n", "<leader>o" .. slot, function()
+		if task_slots[slot] then
+			task_slots[slot]:restart()
+		else
+			choose_task(slot)
+		end
+	end, { desc = "Run Overseer task in slot " .. slot })
+
+	vim.keymap.set("n", "<leader>o" .. choose_key, function()
+		choose_task(slot)
+	end, { desc = "Choose Overseer task for slot " .. slot })
+end
