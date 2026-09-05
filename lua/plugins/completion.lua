@@ -26,10 +26,31 @@ require("blink.cmp").setup({
 		["<C-b>"] = { "scroll_documentation_up", "fallback" },
 		["<C-f>"] = { "scroll_documentation_down", "fallback" },
 	},
+
 	completion = {
 		list = { selection = { preselect = false } },
-	},
 
+		menu = {
+			-- border = "single",
+			draw = {
+				padding = { 0, 1 },
+				gap = 1,
+
+				columns = {
+					{ "label", "label_description", gap = 1 },
+					{ "kind_icon", "kind" },
+				},
+
+				components = {
+					kind_icon = {
+						text = function(ctx)
+							return ctx.kind_icon .. ctx.icon_gap .. " "
+						end,
+					},
+				},
+			},
+		},
+	},
 	-- Mode-specific config layers over the global one, and blink v2 ships
 	-- a cmdline-mode default of preselect = true that beats the global
 	-- `preselect = false` above — making Tab skip the first candidate.
