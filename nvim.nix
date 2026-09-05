@@ -44,8 +44,8 @@
     zls
     qt6Packages.qtdeclarative
     haskell-language-server
-    ocaml
-    ocamlPackages.ocaml-lsp
+    # ocaml
+    # ocamlPackages.ocaml-lsp
 
     # C++
     # clang-tools also bundles clangd, but it doesn't resolve stdlib
@@ -63,7 +63,7 @@
     stylua
     astyle
     prettier
-    ocamlPackages.ocamlformat
+    # ocamlPackages.ocamlformat
 
     # vscode-extensions.ms-vscode.cpptools
     gdb
