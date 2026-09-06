@@ -11,7 +11,6 @@ local function task(name, args, cwd, extra)
 				args = args,
 				cwd = cwd,
 				components = {
-					{ "on_output_quickfix", errorformat = "%f:%l:%c-%*[0-9]:%m,%f:%l:%c:%m", open_on_exit = "failure" },
 					"default",
 				},
 			}, extra or {})
