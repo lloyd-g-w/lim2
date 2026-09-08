@@ -39,6 +39,7 @@ end, { silent = true, desc = "Toggle Overseer" })
 local function choose_task(slot)
 	overseer.run_task({}, function(task)
 		if task then
+			task:remove_components({ "on_complete_dispose" })
 			task_slots[slot] = task
 		end
 	end)

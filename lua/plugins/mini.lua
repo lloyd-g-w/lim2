@@ -12,3 +12,12 @@ require("mini.git").setup({})
 require("mini.diff").setup({})
 require("mini.trailspace").setup({})
 require("mini.jump2d").setup({})
+
+-- Override mini-pairs for ocaml
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "ocaml",
+	callback = function(args)
+		vim.keymap.set("i", "'", "'", { buffer = args.buf })
+		vim.keymap.set("i", "`", "`", { buffer = args.buf })
+	end,
+})
