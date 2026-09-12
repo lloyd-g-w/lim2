@@ -37,6 +37,12 @@ vim.pack.add({
 	"https://github.com/chomosuke/typst-preview.nvim",
 })
 
+require("typst-preview").setup({
+	dependencies_bin = {
+		tinymist = "tinymist",
+	},
+})
+
 --- Java ---
 -- jdtls doesn't fit nvim-lspconfig's declarative model (it needs a
 -- per-project workspace dir), so it's started by hand instead of going
