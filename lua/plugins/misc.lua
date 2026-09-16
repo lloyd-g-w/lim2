@@ -3,9 +3,11 @@ vim.pack.add({
 })
 
 local whichkey = require("which-key")
-whichkey.setup()
+whichkey.setup({})
 
 whichkey.add({
+	{ "<leader>a", group = "AI" },
+	{ "<leader>o", group = "Overseer" },
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>f", group = "Find" },
