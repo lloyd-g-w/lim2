@@ -14,7 +14,7 @@ vim.keymap.set("c", "!", function()
 	return "!"
 end, { expr = true })
 
-vim.keymap.set("n", "<leader>ro", function()
+vim.keymap.set("n", "<leader>oo", function()
 	local was_open = require("overseer.window").is_open()
 
 	overseer.toggle({
@@ -56,7 +56,7 @@ local task_slot_keys = {
 for _, keys in ipairs(task_slot_keys) do
 	local slot, choose_key = unpack(keys)
 
-	vim.keymap.set("n", "<leader>r" .. slot, function()
+	vim.keymap.set("n", "<leader>o" .. slot, function()
 		if task_slots[slot] then
 			task_slots[slot]:restart()
 		else
@@ -64,7 +64,7 @@ for _, keys in ipairs(task_slot_keys) do
 		end
 	end, { desc = "Run Overseer task in slot " .. slot })
 
-	vim.keymap.set("n", "<leader>r" .. choose_key, function()
+	vim.keymap.set("n", "<leader>o" .. choose_key, function()
 		choose_task(slot)
 	end, { desc = "Choose Overseer task for slot " .. slot })
 end
