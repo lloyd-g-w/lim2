@@ -106,6 +106,10 @@
       "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
+    "orgmode": {
+      "rev": "cd431cb1279a4da4c011c508a5332d70e2a097de",
+      "src": "https://github.com/nvim-orgmode/orgmode"
+    },
     "overseer.nvim": {
       "rev": "a93d9f6d6defdac4bcd6d2c8ba988650e42e0a0e",
       "src": "https://github.com/stevearc/overseer.nvim"

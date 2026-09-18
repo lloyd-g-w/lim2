@@ -7,7 +7,8 @@ whichkey.setup({})
 
 whichkey.add({
 	{ "<leader>a", group = "AI" },
-	{ "<leader>o", group = "Overseer" },
+	{ "<leader>r", group = "Runner" },
+	{ "<leader>o", group = "Orgmode" },
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>f", group = "Find" },
