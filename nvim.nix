@@ -43,7 +43,6 @@
     rust-analyzer
     zls
     qt6Packages.qtdeclarative
-    haskell-language-server
     # ocaml
     # ocamlPackages.ocaml-lsp
 
