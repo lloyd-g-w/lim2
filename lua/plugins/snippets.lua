@@ -64,13 +64,13 @@ ls.add_snippets("tex", {
 	}),
 })
 
--- Word-wrapping snippets (bv_2 -> bold(v_2)) must start after a space or at
--- line start, so e.g. abcX is left alone. Checked in a condition because Lua
--- patterns can't express "whitespace or start of line" (%f treats line start
--- as non-space).
+-- Word-wrapping snippets (bv_2 -> bold(v_2)) must start after a space, a $
+-- (so $cI works straight after mk) or at line start, so e.g. abcX is left
+-- alone. Checked in a condition because Lua patterns can't express "this or
+-- start of line" (%f treats line start as non-space).
 local function after_space(line_to_cursor, matched_trigger)
 	local before = line_to_cursor:sub(1, -#matched_trigger - 1)
-	return before == "" or before:match("%s$") ~= nil
+	return before == "" or before:match("[%s$]$") ~= nil
 end
 
 ls.add_snippets("typst", {
