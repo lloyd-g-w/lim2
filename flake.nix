@@ -2,7 +2,7 @@
   description = "lim 2!";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/a32edd7654519351e48e80372a928df336394670";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
