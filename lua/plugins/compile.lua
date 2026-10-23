@@ -67,4 +67,20 @@ for _, keys in ipairs(task_slot_keys) do
 	vim.keymap.set("n", "<leader>o" .. choose_key, function()
 		choose_task(slot)
 	end, { desc = "Choose Overseer task for slot " .. slot })
+
+	vim.keymap.set("n", "<leader>os" .. slot, function()
+		if task_slots[slot] then
+			task_slots[slot]:stop()
+		end
+	end, { desc = "Stop Overseer task in slot " .. slot })
 end
+
+vim.keymap.set("n", "<leader>osa", function()
+	for _, task in
+		ipairs(overseer.list_tasks({
+			status = overseer.STATUS.RUNNING,
+		}))
+	do
+		task:stop()
+	end
+end, { desc = "Stop all Overseer tasks" })

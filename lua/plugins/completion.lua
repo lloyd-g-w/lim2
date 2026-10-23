@@ -25,6 +25,10 @@ require("blink.cmp").setup({
 		["<S-Tab>"] = { "select_prev", "fallback" },
 		["<C-b>"] = { "scroll_documentation_up", "fallback" },
 		["<C-f>"] = { "scroll_documentation_down", "fallback" },
+		-- The inherited default preset binds C-k to show_signature as a
+		-- buffer-local map, shadowing the global LuaSnip expand key in
+		-- snippets.lua (and it consumes the key whenever an LSP is attached).
+		["<C-k>"] = false,
 	},
 
 	completion = {

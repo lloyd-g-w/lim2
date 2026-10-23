@@ -94,11 +94,18 @@ ls.add_snippets("typst", {
 			return "bold(" .. snippet.captures[1] .. ")"
 		end),
 	}),
+	s({ trig = "c([^%s]+)", regTrig = true, wordTrig = false, name = "cal word" }, {
+		f(function(_, snippet)
+			return "cal(" .. snippet.captures[1] .. ")"
+		end),
+	}),
 })
 
 vim.keymap.set("i", "<C-k>", function()
-	ls.expand()
-end, { silent = true })
+	if not ls.expand() then
+		ls.expand_auto()
+	end
+end, { silent = true, desc = "Expand snippet" })
 vim.keymap.set({ "i", "s" }, "<C-l>", function()
 	ls.jump(1)
 end, { silent = true })
