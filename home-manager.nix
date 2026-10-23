@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   cfg = config.programs.lim;
@@ -29,17 +28,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable (let
-    nvim = import ./nvim.nix {
-      pkgs = pkgs.extend inputs.neovim-nightly.overlays.default;
-      bakeConfig = cfg.repo == null;
-    };
+    nvim = import ./nvim.nix {inherit pkgs; bakeConfig = cfg.repo == null;};
   in {
     # Install nvim's CLI tools (LSPs, formatters, ...) into the profile
     # too, so they're runnable from any terminal, not only inside nvim.
     home.packages = [nvim] ++ nvim.extraPackages;
 
-    xdg.configFile."nvim".source =
-      lib.mkIf (cfg.repo != null)
+    xdg.configFile."nvim".source = lib.mkIf (cfg.repo != null)
       (config.lib.file.mkOutOfStoreSymlink cfg.repo);
   });
 }

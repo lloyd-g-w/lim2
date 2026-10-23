@@ -19,7 +19,11 @@
 
       # System-independent outputs.
       flake = {
-        homeManagerModules.default = ./home-manager.nix;
+        homeManagerModules.default = {pkgs, ...} @ args:
+          import ./home-manager.nix (args
+            // {
+              pkgs = pkgs.extend inputs.neovim-nightly.overlays.default;
+            });
       };
 
       # System-dependent outputs.
