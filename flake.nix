@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/a32edd7654519351e48e80372a928df336394670";
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -22,7 +24,11 @@
 
       # System-dependent outputs.
       perSystem = {pkgs, ...}: let
-        nvim = import ./nvim.nix {inherit pkgs;};
+        nightlyPkgs = pkgs.extend inputs.neovim-nightly.overlays.default;
+
+        nvim = import ./nvim.nix {
+          pkgs = nightlyPkgs;
+        };
       in {
         # `nix build` / consumed as a package.
         packages.default = nvim;
