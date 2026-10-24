@@ -12,6 +12,7 @@ whichkey.add({
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>f", group = "Find" },
 	{ "<leader>g", group = "Git" },
+	{ "m", group = "Multicursor" },
 	{
 		"<leader>?",
 		function()
