@@ -22,6 +22,16 @@ whichkey.add({
 	},
 })
 
+--- Indent detection ---
+
+-- Infer shiftwidth/expandtab per buffer from its contents, so files that
+-- don't match the global defaults in init.lua are edited in their own style.
+vim.pack.add({
+	"https://github.com/NMAC427/guess-indent.nvim",
+})
+
+require("guess-indent").setup({})
+
 --- Leetcode ---
 
 vim.pack.add({
