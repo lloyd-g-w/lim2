@@ -4,6 +4,13 @@ vim.keymap.set("n", "<S-j>", "<Nop>")
 -- Exit terminal mode without a plugin.
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Exit terminal mode" })
 
+-- Native multicursor clears on <C-l> by default, but vim-tmux-navigator
+-- takes <C-l> (misc.lua), so clear the namespace directly as :h mcursor-clear suggests.
+local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
+vim.keymap.set("n", "<C-q>", function()
+	vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+end, { silent = true, desc = "Clear multicursors" })
+
 -- Quickfix list navigation.
 vim.keymap.set("n", "<leader>co", "<cmd>copen<cr>", { silent = true, desc = "Open quickfix list" })
 vim.keymap.set("n", "<leader>cc", "<cmd>cclose<cr>", { silent = true, desc = "Close quickfix list" })
