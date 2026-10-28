@@ -64,3 +64,7 @@ require("copilot.command").disable()
 vim.keymap.set("i", "<C-f>", function()
 	require("copilot.suggestion").accept()
 end, { desc = "Accept copilot suggestion", silent = true })
+
+vim.pack.add({ "https://github.com/evan-a-w/prigh" })
+vim.opt.rtp:append(vim.fn.stdpath("data") .. "/site/pack/core/opt/prigh/editors/nvim")
+require("prigh").setup({})
