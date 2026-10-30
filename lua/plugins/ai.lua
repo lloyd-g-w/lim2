@@ -15,6 +15,10 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 vim.pack.add({
+	-- avante's plugin/avante.lua requires mega.cmdparse (which needs mega.logging)
+	-- at load time, so these must be on the rtp before avante is loaded.
+	"https://github.com/ColinKennedy/mega.logging",
+	"https://github.com/ColinKennedy/mega.cmdparse",
 	{
 		src = "https://github.com/yetone/avante.nvim",
 		version = "main", -- default
