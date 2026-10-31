@@ -34,7 +34,8 @@ in {
     # too, so they're runnable from any terminal, not only inside nvim.
     home.packages = [nvim] ++ nvim.extraPackages;
 
-    xdg.configFile."nvim".source = lib.mkIf (cfg.repo != null)
-      (config.lib.file.mkOutOfStoreSymlink cfg.repo);
+    xdg.configFile."nvim" = lib.mkIf (cfg.repo != null) {
+      source = config.lib.file.mkOutOfStoreSymlink cfg.repo;
+    };
   });
 }
