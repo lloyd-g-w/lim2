@@ -51,6 +51,7 @@
     # headers correctly — only use it for clang-format, not as clangd's
     # source.
     clang-tools
+    gcc
 
     tex-fmt
     rustfmt
