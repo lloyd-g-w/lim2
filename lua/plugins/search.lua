@@ -36,3 +36,4 @@ local flash = require("flash")
 flash.setup()
 
 vim.keymap.set({ "n", "x", "o" }, "f", flash.jump, { desc = "Flash" })
+vim.keymap.set({ "n", "x", "o" }, "<CR>", flash.jump, { desc = "Flash" })

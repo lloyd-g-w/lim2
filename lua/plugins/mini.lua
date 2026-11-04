@@ -11,7 +11,7 @@ require("mini.icons").setup({})
 require("mini.git").setup({})
 require("mini.diff").setup({})
 require("mini.trailspace").setup({})
-require("mini.jump2d").setup({})
+-- require("mini.jump2d").setup({})
 
 -- Override mini-pairs for ocaml
 vim.api.nvim_create_autocmd("FileType", {
