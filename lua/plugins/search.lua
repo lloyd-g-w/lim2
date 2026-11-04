@@ -33,7 +33,27 @@ vim.pack.add({
 })
 
 local flash = require("flash")
-flash.setup()
+flash.setup({
+	modes = {
+		-- Off by default upstream; this is what puts jump labels on `/` and `?` matches.
+		search = { enabled = true },
+		-- f/t/F/T/;/, are left to flash's char mode (on by default) rather than
+		-- remapped to jump(), so they keep their normal semantics plus labels.
+		char = { jump_labels = true },
+	},
+})
 
-vim.keymap.set({ "n", "x", "o" }, "f", flash.jump, { desc = "Flash" })
-vim.keymap.set({ "n", "x", "o" }, "<CR>", flash.jump, { desc = "Flash" })
+-- <CR> is also how quickfix/help/terminal buffers "open" things, so only take it over
+-- in normal file buffers.
+vim.keymap.set({ "n", "x", "o" }, "<CR>", function()
+	if vim.bo.buftype ~= "" then
+		vim.api.nvim_feedkeys(vim.keycode("<CR>"), "n", false)
+	else
+		flash.jump()
+	end
+end, { desc = "Flash" })
+-- `S` rather than `s`: mini.surround owns the `s` prefix (sa/sd/sr...).
+vim.keymap.set({ "n", "x", "o" }, "S", flash.treesitter, { desc = "Flash treesitter" })
+vim.keymap.set("o", "r", flash.remote, { desc = "Remote flash" })
+vim.keymap.set({ "o", "x" }, "R", flash.treesitter_search, { desc = "Treesitter search" })
+vim.keymap.set("c", "<C-s>", flash.toggle, { desc = "Toggle flash search" })

@@ -94,7 +94,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 --- Formatting ---
-
 vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
 })
