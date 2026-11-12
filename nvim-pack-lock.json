@@ -13,6 +13,10 @@
       "src": "https://github.com/yetone/avante.nvim",
       "version": "'main'"
     },
+    "baleia.nvim": {
+      "rev": "14c279cc7241d97585f8000dfd7dcdbca9fb4458",
+      "src": "https://github.com/m00qek/baleia.nvim"
+    },
     "blink.cmp": {
       "rev": "d50cfb205c677143d1f036a4749e21c1c8c6bc85",
       "src": "https://github.com/Saghen/blink.cmp"
@@ -28,6 +32,10 @@
     "copilot.lua": {
       "rev": "7e6723aabea044519462958ffcea68d7985c5ed0",
       "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
     },
     "dropbar.nvim": {
       "rev": "808ba31cde89aec8833e9789f5e04557cd31c9e1",
@@ -72,6 +80,10 @@
     "mini.nvim": {
       "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "neogit": {
+      "rev": "aa99b440b266bcf7e03399f149ed46f981555fa3",
+      "src": "https://github.com/NeogitOrg/neogit"
     },
     "noice.nvim": {
       "rev": "7bfd942445fb63089b59f97ca487d605e715f155",

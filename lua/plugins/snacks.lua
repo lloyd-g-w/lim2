@@ -13,6 +13,6 @@ snacks.setup({
 	scope = { enabled = true },
 })
 
-vim.keymap.set("n", "<leader>gg", function()
-	snacks.lazygit()
-end, { desc = "Open lazygit" })
+-- vim.keymap.set("n", "<leader>gg", function()
+-- 	snacks.lazygit()
+-- end, { desc = "Open lazygit" })
